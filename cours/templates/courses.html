@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block head %}
+  <title>
+    Courses
+  </title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock%}
+
+
+{%block body%}
+<br>
+  <section class="header ">
+    <nav class="container">
+      <div class="nav-wrapper green darken-4 ">
+        <ul class="left hide-on-med-and-down ">
+          <li><a href="{% url 'courses' %}">All Courses</a></li>
+          <li><a href="{% url 'donecourses' %}">Done Courses</a></li>
+          <li><a href="{% url 'plannedcourses' %}">Planned Courses</a></li>
+          <li><a href="../" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+  <section class="courses">
+    <div class="container" style="padding:30px;">
+      <div class="row">
+        {% for cour in cours %}
+        <div class="col s12 m8 l4">
+          <div class="card z-depth-3">
+            <div class="card-image">
+              <a href="{{cour.ytUrl}}" target="_blank" >
+                <img src="{{cour.imgUrl}}">
+              </a>
+            </div>
+            <div class="card-content">
+              <p>{{cour.id }} : {{cour.title}}</p>
+            </div>
+            <div class="card-action">
+              <a href="{%url 'courses' cour.id %}" target="_blank" class=" waves-effect waves-green btn">Visit this</a>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </section>
+{%endblock%}
+
