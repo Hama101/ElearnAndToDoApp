@@ -8,8 +8,8 @@ I-the idea behind this site is to keep on track on the learning curve:
 
 1- didn t even start
 2- nearly done missing the forms logic
-3- working on deleting task
-4-didn t even start
-5-didn t even start
+3- done the ToDoApp
+4- didn t even start
+5- didn t even start
 
 now
