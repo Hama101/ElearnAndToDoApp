@@ -5,7 +5,7 @@ class Course(m.Model):
     title = m.CharField(max_length=100)
     imgUrl = m.CharField(max_length=3083)
     ytUrl = m.CharField(max_length=3083)
-    description = m.CharField(max_length=255)
+    description = m.CharField(null=True ,max_length=255)
     done = m.BooleanField(default=False)
 
     def __str__(self):

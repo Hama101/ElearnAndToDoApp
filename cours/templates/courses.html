@@ -5,11 +5,13 @@
   <title>
     Courses
   </title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock%}
 
-
 {%block body%}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <br>
   <section class="header ">
     <nav class="container">
@@ -23,6 +25,19 @@
       </div>
     </nav>
   </section>
+  <br>
+  {%if request.get_full_path  == '/courses/'%}
+  <div class="center-column">
+    <form action="" method="POST">
+      {%csrf_token%}
+      {{CourseForm.title}}
+      {{CourseForm.imgUrl}}
+      {{CourseForm.ytUrl}}
+      {{CourseForm.description}}
+      <input class="btn btn-info" type="submit" name="addCourse">
+    </form>
+  </div>
+  {%endif%}
   <section class="courses">
     <div class="container" style="padding:30px;">
       <div class="row">
@@ -38,8 +53,13 @@
               <p>{{cour.id }} : {{cour.title}}</p>
             </div>
             <div class="card-action">
-              <a href="{%url 'courses' cour.id %}" target="_blank" class=" waves-effect waves-green btn">Visit this</a>
+              <a href="{%url 'courses' cour.id %}" class=" waves-effect waves-green btn">Visit this</a>
             </div>
+            {%if not cour.done %}
+            <div class="card-action">
+              <a href="{%url 'setasdone' cour.id %}"  class=" waves-effect waves-green btn">Done</a>
+            </div>
+            {%endif%}
           </div>
         </div>
         {%endfor%}

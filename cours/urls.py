@@ -10,5 +10,6 @@ urlpatterns = [
     path('deletetask/<str:pk>/',v.deleteTask , name="delete_task"),
     path('donecourses/',v.donecourses, name="donecourses" ),
     path('plannedcourses/',v.plannedcourses , name = "plannedcourses"),
-    path("courses/<int:id>",v.findCour , name = "courses"),
+    path("courses/<str:id>",v.findCour , name = "courses"),
+    path("setasdone/<str:id>",v.setasdone , name = "setasdone"),
 ]

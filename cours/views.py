@@ -6,12 +6,22 @@ from datetime import date
 #blog section
 def home(request):
     return render(request,"home.html")
+#done with the blog
 
-#courses section
+#Courses section
 def courses(request):
     cours = Course.objects.all()
+    CourseForm = CoursesFrom()
+    
+    if request.method == "POST":
+        form = CoursesFrom(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/courses/')
+
     dict={
-        'cours':cours
+        'cours':cours ,
+        'CourseForm' : CourseForm
     }
     return render(request,'courses.html',dict)
 
@@ -21,6 +31,12 @@ def findCour(request , id):
         'cour':cour
     }
     return render(request,'cour.html',dict)
+
+def setasdone(request , id ):
+    course = Course.objects.get(id=id)
+    course.done = True
+    course.save()
+    return redirect('/courses/')
 
 def plannedcourses(request):
     cours = Course.objects.filter(done=False)
@@ -35,6 +51,7 @@ def donecourses(request):
         'cours':cours
     }
     return render(request,'courses.html',dict)
+#done with Courses
 
 #to do app section
 def todolist(request):
@@ -99,3 +116,4 @@ def dailytasks(request):
         'taskForm' : taskForm
     }
     return render(request , 'todoapp/dailytasks.html' , dict)
+#done with ToDoApp
