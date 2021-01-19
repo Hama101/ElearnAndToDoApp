@@ -60,9 +60,10 @@ def todolist(request):
     taskForm = TaskForm()
 
     if request.method == "POST":
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
+        task = Item()
+        task.title = request.POST['title']
+        task.date = request.POST['date']
+        task.save()
         return redirect('/todolist/')
 
     dict ={

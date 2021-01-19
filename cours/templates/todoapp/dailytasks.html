@@ -24,12 +24,6 @@
 </section>
 <br>
     <div class="center-column">
-        <form method="POST" action="">
-            {%csrf_token%}
-            {{taskForm.title}}
-            {{taskForm.date}}
-            <input class="btn btn-info" type="submit" name="addTask">
-        </form>
             <div class="todo-list">
                 {% for task in tasks %}
                 <div class="item-row">
